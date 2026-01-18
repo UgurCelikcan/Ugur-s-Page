@@ -1,0 +1,285 @@
+/* Reset & Basic Setup */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #0f0f0f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#background-video {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(0.7);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Container - Enhanced Glassmorphism */
+.container {
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    padding: 3rem 2.5rem;
+    border-radius: 24px;
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1); /* Yumuşak hareket için */
+}
+
+.container.slide-right {
+    transform: translateX(450px); /* Sağa doğru 450px kaydır */
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    object-fit: cover;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6); /* Mor gölge */
+}
+
+/* Typography */
+h1 {
+    margin: 0.5rem 0 0.2rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    /* Mor Gradient */
+    background: linear-gradient(to right, #c084fc, #fff); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #ccc;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Info Card */
+.card {
+    background: rgba(255, 255, 255, 0.07);
+    padding: 1rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.card:hover {
+    background: rgba(168, 85, 247, 0.15); /* Hafif Mor Arkaplan */
+    transform: translateY(-3px);
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+.card-pic {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    margin-right: 1rem;
+    object-fit: cover;
+}
+
+.card-info {
+    text-align: left;
+}
+
+.card-info .username {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0;
+    color: #fff;
+}
+
+.card-info .status {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin: 2px 0 0;
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.social-links a {
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-links a:hover {
+    background: #a855f7; /* Mor Arkaplan */
+    color: #fff;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4); /* Mor Gölge */
+}
+
+/* Visitor Counter (KIRMIZI KALIYOR) */
+.visitor-counter {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: #aaa;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.visitor-counter i {
+    margin-right: 5px;
+    color: #ff0000; /* Kırmızı ikon */
+}
+
+.visitor-counter span {
+    color: #ff0000; /* Kırmızı sayı */
+    font-weight: 600;
+}
+
+/* Sound Controls */
+#sound-button-container {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 52px;
+    overflow: hidden;
+}
+
+#sound-button-container:hover {
+    width: 160px;
+    background: rgba(0, 0, 0, 0.85);
+    border-color: rgba(168, 85, 247, 0.3); /* Mor Kenarlık */
+}
+
+#sound-button {
+    background: transparent;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: color 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+#sound-button:hover {
+    color: #a855f7; /* Mor İkon */
+    transform: scale(1.1);
+}
+
+#volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+    cursor: pointer;
+}
+
+#sound-button-container:hover #volume-slider {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #a855f7; /* Mor Slider Başlığı */
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); /* Mor Parlama */
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: #a855f7; /* Mor Slider Başlığı */
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
