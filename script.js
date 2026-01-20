@@ -117,6 +117,21 @@ document.addEventListener('DOMContentLoaded', () => {
     visitorCounter.innerHTML = '<i class="fas fa-eye"></i> Ziyaretçi Sayısı: <span>1923</span>'; 
     container.appendChild(visitorCounter);
 
+    // Kick Stream Iframe
+    const streamWrapper = document.createElement('div');
+    streamWrapper.className = 'stream-wrapper';
+    streamWrapper.innerHTML = `
+        <iframe 
+            src="https://player.kick.com/ugurcn" 
+            height="720" 
+            width="1280" 
+            frameborder="0" 
+            scrolling="no" 
+            allowfullscreen="true">
+        </iframe>
+    `;
+    container.appendChild(streamWrapper);
+
     app.appendChild(container);
 
     // --- Sound Controls ---
@@ -144,11 +159,25 @@ document.addEventListener('DOMContentLoaded', () => {
     soundButton.addEventListener('click', () => {
         video.muted = !video.muted;
         soundIcon.className = video.muted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-        volumeSlider.value = video.muted ? 0 : video.volume;
-        // if unmuting from volume 0, set to a default
+        volumeSlider.value = video.muted ? 0 : (video.volume || 0.5); // Default to 0.5 if volume was 0
+        
+        // if unmuting and volume was 0, set to a default
         if (!video.muted && video.volume === 0) {
             video.volume = 0.5;
             volumeSlider.value = 0.5;
+        }
+    });
+
+    volumeSlider.addEventListener('input', (e) => {
+        const volume = parseFloat(e.target.value);
+        video.volume = volume;
+        
+        if (volume > 0) {
+            video.muted = false;
+            soundIcon.className = 'fas fa-volume-up';
+        } else {
+            video.muted = true;
+            soundIcon.className = 'fas fa-volume-mute';
         }
     });
 });
